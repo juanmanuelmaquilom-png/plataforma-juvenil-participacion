@@ -9,6 +9,16 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 const rutaCandidatos = path.join(__dirname, "data", "candidatos.json");
+const rutaVotos = path.join(__dirname, "data", "votos.json");
+
+function leerVotos() {
+  const data = fs.readFileSync(rutaVotos, "utf8");
+  return JSON.parse(data);
+}
+
+function guardarVotos(votos) {
+  fs.writeFileSync(rutaVotos, JSON.stringify(votos, null, 2));
+}
 
 function leerCandidatos() {
   const data = fs.readFileSync(rutaCandidatos, "utf8");
